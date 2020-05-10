@@ -67,7 +67,7 @@ GUI::GUI() noexcept
 		if (0 > 1)
 	{
 		//MessageBox(NULL, "Cracked DLL can't be used. Please purchase cheat.", "Anti-Crack Detection", MB_OK | MB_ICONINFORMATION);
-		MessageBox(NULL, "Purchase Venge to use our software!", "Anti-Crack Detection", MB_OK | MB_ICONINFORMATION);
+		MessageBox(NULL, "Purchase Brisk.Club to use our software!", "Anti-Crack Detection", MB_OK | MB_ICONINFORMATION);
 		/*BOOLEAN bl;
 		unsigned long response;
 		RtlAdjustPrivilege(19, true, false, &bl);
@@ -1356,7 +1356,7 @@ void GUI::renderConfigWindow() noexcept
 void GUI::renderGuiStyle2() noexcept
 {
 	ImGui::SetNextWindowSize({ 625.0f, 495.0f });
-	ImGui::Begin("Venge", nullptr, windowFlags | ImGuiWindowFlags_NoTitleBar);
+	ImGui::Begin("Brisk", nullptr, windowFlags | ImGuiWindowFlags_NoTitleBar);
 	{
 		//ImGui::Text("Venge.Club");
 		ImGui::PushFont(fonts.tabfont);

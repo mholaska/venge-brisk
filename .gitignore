@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+*.ipch
+*.tlog
+*.tlog
+.vs/Venge-Legit/v16/.suo
+*.pdb
+*.idb

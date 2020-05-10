@@ -1,0 +1,6 @@
+﻿  GUI.cpp
+  Misc.cpp
+  Venge.cpp
+C:\Users\ralze\Documents\GitHub\venge-brisk\Venge\Hacks\Misc.cpp(38,37): warning C4244: '=': conversion from 'ULONGLONG' to 'size_t', possible loss of data
+C:\Users\ralze\Documents\GitHub\venge-brisk\Venge\Hacks\Misc.cpp(49,66): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Osiris.vcxproj -> C:\Users\ralze\Documents\GitHub\venge-brisk\Debug\Venge-Club-Legit.dll

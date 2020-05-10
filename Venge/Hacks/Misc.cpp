@@ -27,20 +27,21 @@ void tag(std::string clantag)
 
     static size_t lastTime = 0;
 
-    if (GetTickCount() > lastTime)
+    if (GetTickCount64() > lastTime)
     {
+        /*
         clantag_ += clantag_.at(0);
-        clantag_.erase(0, 1);
+        clantag_.erase(0, 1);*/
 
         Misc::apply_clan_tag(clantag_.c_str());
         //memory.setClanTag(clantag_.c_str(), clantag_.c_str());
 
-        lastTime = GetTickCount() + 650;
+        lastTime = GetTickCount64() + 650;
     }
 }
 
 void Misc::updateClanTag(bool tagChanged) noexcept
-{
+{    
     if (!interfaces.engine->isInGame())
         return;
     if (config.misc.useClanTag)
@@ -50,26 +51,68 @@ void Misc::updateClanTag(bool tagChanged) noexcept
         //auto local_player = interfaces.entityList->getEntity(interfaces.engine->getLocalPlayer());
         //server_time = ((float)memory.globalVars->intervalPerTick * local_player->tickBase());
         static int counter = 0;
+
+        switch (int(server_time) % 28)
+        {
+        case 0: tag("                  "); break;
+        case 1: tag("                 b"); break;
+        case 2: tag("                br"); break;
+        case 3: tag("               bri"); break;
+        case 4: tag("              bris"); break;
+        case 5: tag("             brisk"); break;
+        case 6: tag("            brisk."); break;
+        case 7: tag("           brisk.c"); break;
+        case 8: tag("          brisk.club"); break;
+        case 9: tag("         brisk.club"); break;
+        case 10:tag("        brisk.club "); break;
+        case 11:tag("       brisk.club  "); break;
+        case 12:tag("      brisk.club   "); break;
+        case 13:tag("     brisk.club    "); break;
+        case 14:tag("    brisk.club     "); break;
+        case 15:tag("   brisk.club      "); break;
+        case 16:tag("  brisk.club       "); break;
+        case 17:tag(" brisk.club        "); break;
+        case 18:tag("brisk.club         "); break;
+        case 19:tag("risk.club          "); break;
+        case 20:tag("isk.club           "); break;
+        case 22:tag("sk.club            "); break;
+        case 23:tag("k.club             "); break;
+        case 24:tag(".club              "); break;
+        case 25:tag("club               "); break;
+        case 26:tag("lub                "); break;
+        case 27:tag("ub                 "); break;
+        case 28:tag("b                 "); break;
+
+        }
+
+        /*
         int value = server_time % 11;
         if (counter % 11 == 0)
         {
             switch (value)
             {
-            case 0: tag(" Venge.club ");
-            case 1: tag(" Venge.club "); 
-            case 2: tag(" Venge.club "); 
-            case 3: tag(" Venge.club "); 
-            case 4: tag(" Venge.club "); 
-            case 5: tag(" Venge.club "); 
-            case 6: tag(" Venge.club "); 
-            case 7: tag(" Venge.club "); 
-            case 8: tag(" Venge.club "); 
-            case 9: tag(" Venge.club "); 
-            case 10: tag(" Venge.club "); 
+            case 0: tag(" Brisk.club ");
+            case 1: tag(" bRisk.club "); 
+            case 2: tag(" brIsk.club "); 
+            case 3: tag(" briSk.club "); 
+            case 4: tag(" brisK.club "); 
+            case 5: tag(" brisk.club "); 
+            case 6: tag(" brisk.Club "); 
+            case 7: tag(" brisk.cLub "); 
+            case 8: tag(" brisk.clUb "); 
+            case 9: tag(" Brisk.cluB "); 
+            case 10: tag(" Brisk.club "); 
                 break;
             }
             counter++;
-        } 
+        } */
+    }
+    else
+    {
+        if (tagChanged)
+        {
+            tag(" ");
+        }
     }
 }
 
@@ -182,21 +225,21 @@ void Misc::watermark() noexcept
 
 
         //rectangles
-        interfaces.surface->setDrawColor(255, 0, 255, 255);
-        interfaces.surface->drawFilledRect(width - 192, 13, 13 + width - 225 + 188, 9 + 25);
+        interfaces.surface->setDrawColor(12, 61, 140, 255);
+        interfaces.surface->drawFilledRect(width - 182, 13, 13 + width - 225 + 188, 9 + 25);
         //interfaces.surface->setDrawColor(60, 60, 60, 255);
-        interfaces.surface->drawFilledRect(width - 195, 10, 13 + width - 224 + 190, 10 + 27);
+        interfaces.surface->drawFilledRect(width - 185, 10, 13 + width - 224 + 190, 10 + 27);
         interfaces.surface->setDrawColor(25, 25, 25, 255);
-        interfaces.surface->drawFilledRect(width - 194, 11, 13 + width - 223 + 188, 11 + 25);
+        interfaces.surface->drawFilledRect(width - 184, 11, 13 + width - 223 + 188, 11 + 25);
         //interfaces.surface->setDrawColor(60, 60, 60, 255);
-        interfaces.surface->drawFilledRect(width - 191, 14, 13 + width - 220 + 182, 14 + 19);
+        interfaces.surface->drawFilledRect(width - 181, 14, 13 + width - 220 + 182, 14 + 19);
         interfaces.surface->setDrawColor(25, 25, 25, 255);
-        interfaces.surface->drawFilledRect(width - 190, 15, 13 + width - 219 + 180, 15 + 17);
+        interfaces.surface->drawFilledRect(width - 180, 15, 13 + width - 219 + 180, 15 + 17);
 
         interfaces.surface->setTextFont(Surface::font);
-        interfaces.surface->setTextPosition(width - 185, 15);
-        interfaces.surface->setTextColor(225, 0, 225, 235);
-        interfaces.surface->printText(L"Venge");
+        interfaces.surface->setTextPosition(width - 175, 15);
+        interfaces.surface->setTextColor(12, 61, 140, 235);
+        interfaces.surface->printText(L"Brisk");
 
         interfaces.surface->setTextFont(Surface::font);
         interfaces.surface->setTextPosition(width - 222 + 76, 15);

@@ -5,7 +5,7 @@
 #include "Memory.h"
 #include "Netvars.h"
 
-Config config{ "Venge" };
+Config config{ "Brisk" };
 GUI gui;
 const Interfaces interfaces;
 Memory memory;

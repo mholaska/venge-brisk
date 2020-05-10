@@ -230,7 +230,7 @@ public:
         bool fixMovement{ false };
         bool disableModelOcclusion{ false };
         bool killMessage{ false };
-        char killMessageString[230]{ "Venge.Club" };
+        char killMessageString[230]{ "Brisk.Club" };
         bool nameStealer{ false };
         bool disablePanoramablur{ false };
         char voteText[50]{ "" };
