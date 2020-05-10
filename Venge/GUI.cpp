@@ -41,7 +41,12 @@ constexpr auto windowFlags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoRe
 
 GUI::GUI() noexcept
 {
-	//TODO: Add Keybind to show ESP, Visuals, and Chams.
+	
+	/*
+	* The code below is a verification that makes sure the cheat is being loaded.
+	* During development, make sure to leave it commented out. When live build goes up,
+	* make sure that you uncomment lines 52-66 and comment line 67.
+	*/
 
 
 	/*string key;
