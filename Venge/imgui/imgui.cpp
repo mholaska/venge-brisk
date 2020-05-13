@@ -949,8 +949,8 @@ ImGuiStyle::ImGuiStyle()
     ColumnsMinSpacing = 6.0f;             // Minimum horizontal spacing between two columns. Preferably > (FramePadding.x + 1).
     ScrollbarSize = 14.0f;            // Width of the vertical scrollbar, Height of the horizontal scrollbar
     ScrollbarRounding = 9.0f;             // Radius of grab corners rounding for scrollbar
-    GrabMinSize = 1.0f;            // Minimum width/height of a grab box for slider/scrollbar
-    GrabRounding = 0.0f;             // Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.
+    GrabMinSize = 4.f;            // Minimum width/height of a grab box for slider/scrollbar
+    GrabRounding = 3.0f;             // Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.
     TabRounding = 1.0f;             // Radius of upper corners of a tab. Set to 0.0f to have rectangular tabs.
     TabBorderSize = 1.0f;             // Thickness of border around tabs.
     ColorButtonPosition = ImGuiDir_Right;   // Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
