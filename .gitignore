@@ -36,3 +36,11 @@
 .vs/Venge-Legit/v16/.suo
 *.pdb
 *.idb
+
+#Directories
+Debug/
+Release/
+.vs/
+Venge/.vs/
+Venge/Debug/
+Venge/Release/
