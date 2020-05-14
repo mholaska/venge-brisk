@@ -848,7 +848,6 @@ void Config::load(size_t id) noexcept
         if (miscJson.isMember("Choked packets key")) misc.chokedPacketsKey = miscJson["Choked packets key"].asInt();
         if (miscJson.isMember("Quick healthshot key")) misc.quickHealthshotKey = miscJson["Quick healthshot key"].asInt();
         if (miscJson.isMember("Grenade predict")) misc.nadePredict = miscJson["Grenade predict"].asBool();
-        if (miscJson.isMember("Grenade trajectory")) misc.nadeTrajectory = miscJson["Grenade trajectory"].asBool();
         if (miscJson.isMember("Fix tablet signal")) misc.fixTabletSignal = miscJson["Fix tablet signal"].asBool();
         if (miscJson.isMember("Max angle delta")) misc.maxAngleDelta = miscJson["Max angle delta"].asFloat();
     }
@@ -1540,7 +1539,6 @@ void Config::save(size_t id) const noexcept
         miscJson["Choked packets key"] = misc.chokedPacketsKey;
         miscJson["Quick healthshot key"] = misc.quickHealthshotKey;
         miscJson["Grenade predict"] = misc.nadePredict;
-        miscJson["Grenade trajectory"] = misc.nadeTrajectory;
         miscJson["Fix tablet signal"] = misc.fixTabletSignal;
         miscJson["Max angle delta"] = misc.maxAngleDelta;
     }
