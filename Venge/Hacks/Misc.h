@@ -30,6 +30,7 @@ namespace Misc {
     bool changeName(bool, const char*, float) noexcept;
     void fastmovementjump(UserCmd*) noexcept;
     void nadePredict() noexcept;
+    void nadeTrajectory() noexcept;
 
     constexpr void fixMovement(UserCmd* cmd, float yaw) noexcept
     {
