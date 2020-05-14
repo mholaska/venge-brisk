@@ -912,8 +912,8 @@ void GUI::renderespWindow() noexcept
 				ImGuiCustom::colorPicker("Money", config.esp.players[selected].money);
 				ImGui::SameLine(spacing);
 				ImGuiCustom::colorPicker("Armor Bar", config.esp.players[selected].armorBar);
-				ImGuiCustom::colorPicker("Outline", config.esp.players[selected].outline);
-				ImGui::SameLine(spacing);
+				//ImGuiCustom::colorPicker("Outline", config.esp.players[selected].outline);
+				//ImGui::SameLine(spacing);
 				ImGuiCustom::colorPicker("Distance", config.esp.players[selected].distance);
 				ImGuiCustom::colorPicker("Active Weapon", config.esp.players[selected].activeWeapon);
 				ImGui::SliderFloat("Max Distance", &config.esp.players[selected].maxDistance, 0.0f, 200.0f, "%.2fm");
@@ -1096,7 +1096,7 @@ void GUI::renderVisualsWindow() noexcept
 		hotkey(config.visuals.thirdpersonKey);
 		ImGui::PushItemWidth(290.0f);
 		ImGui::PushID(0);
-		ImGui::SliderInt("", &config.visuals.thirdpersonDistance, 0, 1000, "Thirdperson Distance: %d");
+		ImGui::SliderInt("", &config.visuals.thirdpersonDistance, 0, 530, "Thirdperson Distance: %d");
 		ImGui::PopID();
 		ImGui::PushID(1);
 		ImGui::SliderInt("", &config.visuals.viewmodelFov, -60, 60, "Viewmodel FOV: %d");
@@ -1274,6 +1274,7 @@ void GUI::renderMiscWindow() noexcept
 		//ImGui::SameLine();
 		//hotkey(config.misc.chokedPacketsKey);
 		ImGui::Checkbox("Grenade Prediction", &config.misc.nadePredict);
+		ImGui::Checkbox("Grenade Trajectory", &config.misc.nadeTrajectory);
 		ImGui::SetNextItemWidth(120.0f);
 
 		//if (ImGui::Button("Unhook"))
@@ -1387,45 +1388,6 @@ void GUI::renderGuiStyle2() noexcept
 			window.config = 0;
 		}
 		ImGui::SameLine();
-		/*if (ImGui::Button("Glow", ImVec2(60, 38))) //Glow
-		{
-			window.aimhelper = 0;
-			window.fastshotbot = 0;
-			window.visuals = 0;
-			window.colouredbody = 0;
-			window.bodyoutline = true;
-			window.esp = 0;
-			window.misc = 0;
-			window.skinChanger = 0;
-			window.config = 0;
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("Chams", ImVec2(60, 38))) //Chams
-		{
-			window.aimhelper = 0;
-			window.fastshotbot = 0;
-			window.visuals = 0;
-			window.colouredbody = true;
-			window.bodyoutline = 0;
-			window.esp = 0;
-			window.misc = 0;
-			window.skinChanger = 0;
-			window.config = 0;
-		}
-		ImGui::SameLine();
-		if (ImGui::Button("ESP", ImVec2(60, 38))) //ESP
-		{
-			window.aimhelper = 0;
-			window.fastshotbot = 0;
-			window.visuals = 0;
-			window.colouredbody = 0;
-			window.bodyoutline = 0;
-			window.esp = true;
-			window.misc = 0;
-			window.skinChanger = 0;
-			window.config = 0;
-		}*/
-		//ImGui::SameLine();
 		if (ImGui::Button("B",ImVec2(95, 38))) //Visuals //B
 		{
 			window.aimhelper = 0;

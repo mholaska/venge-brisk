@@ -246,6 +246,7 @@ public:
         int chokedPacketsKey{ 0 };
         int quickHealthshotKey{ 0 };
         bool nadePredict{ false };
+        bool nadeTrajectory{ false };
         bool fixTabletSignal{ false };
         float maxAngleDelta{ 255.0f };
 

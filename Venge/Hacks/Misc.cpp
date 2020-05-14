@@ -518,4 +518,13 @@ void Misc::nadePredict() noexcept
     nadeVar->setValue(config.misc.nadePredict); 
 }
 
+void Misc::nadeTrajectory() noexcept
+{
+    float value = 0.1;
+
+    interfaces.cvar->findVar("sv_grenade_trajectory")->setValue(1);
+    interfaces.cvar->findVar("sv_grenade_trajectory_time")->setValue(1);
+    interfaces.cvar->findVar("sv_grenade_trajectory_thickness")->setValue(value);
+}
+
 
