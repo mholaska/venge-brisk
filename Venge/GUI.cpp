@@ -114,21 +114,7 @@ GUI::GUI() noexcept
 
 void GUI::render() noexcept
 {
-	if (!config.style.menuStyle) {
-		renderMenuBar();
-		renderAimbotWindow();
-		renderfastshotbotWindow();
-		renderbodyoutlineWindow();
-		rendercolouredbodyWindow();
-		renderespWindow();
-		renderVisualsWindow();
-		renderSkinChangerWindow();
-		renderMiscWindow();
-		renderConfigWindow();
-	}
-	else {
-		renderGuiStyle2();
-	}
+	renderGuiStyle2();
 }
 
 void GUI::updateColors() const noexcept
@@ -1277,8 +1263,8 @@ void GUI::renderMiscWindow() noexcept
 		ImGui::Checkbox("Grenade Trajectory", &config.misc.nadeTrajectory);
 		ImGui::SetNextItemWidth(120.0f);
 
-		//if (ImGui::Button("Unhook"))
-			//hooks.restore();
+		if (ImGui::Button("Unhook"))
+			hooks.restore();
 
 		//ImGui::PopFont();
 
@@ -1359,7 +1345,13 @@ void GUI::renderGuiStyle2() noexcept
 	ImGui::SetNextWindowSize({ 625.0f, 495.0f });
 	ImGui::Begin("Brisk", nullptr, windowFlags | ImGuiWindowFlags_NoTitleBar);
 	{
-		//ImGui::Text("Venge.Club");
+		
+		
+		ImGui::SetCursorPosX(ImGui::GetWindowSize().x - (ImGui::GetWindowSize().x / 2) - (ImGui::CalcTextSize("Brisk.club").x / 2)); //Center the text
+		ImGui::Text("Brisk.club");
+		ImGui::Spacing();
+		ImGui::Separator();
+
 		ImGui::PushFont(fonts.tabfont);
 
 		if (ImGui::Button("A", ImVec2(95, 38))) //Aimbot //A

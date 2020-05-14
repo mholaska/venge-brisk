@@ -80,7 +80,7 @@ public:
         bool enabled{ false };
         bool ignoreSmoke{ false };
         bool recoilBasedFov{ false };
-        int timeLimit{ 200 };
+        int timeLimit{ 1 };
     } timereverse;
 
 
