@@ -173,7 +173,7 @@ using namespace IMGUI_STB_NAMespACE;
 // [SECTION] Style functions
 //-----------------------------------------------------------------------------
 
-void ImGui::StyleColorsDark(ImGuiStyle* dst)
+void ImGui::StyleColorsDark(ImGuiStyle* dst)    //Menu colors
 {
     ImGuiStyle* style = dst ? dst : &ImGui::GetStyle();
     ImVec4* colors = style->Colors;
@@ -186,7 +186,7 @@ void ImGui::StyleColorsDark(ImGuiStyle* dst)
     colors[ImGuiCol_Border] = ImVec4(0.04f, 0.24f, 0.55f, 1.0f);
     colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
     colors[ImGuiCol_FrameBg] = ImVec4(0.03f, 0.03f, 0.03f, 0.54f);
-	colors[ImGuiCol_FrameBgHovered] = colors[ImGuiCol_FrameBg]; //ImVec4(0.70f, 0.0f, 0.70f, 0.40f);
+    colors[ImGuiCol_FrameBgHovered] = colors[ImGuiCol_FrameBg]; //ImVec4(0.70f, 0.0f, 0.70f, 0.40f);
     colors[ImGuiCol_FrameBgActive] = colors[ImGuiCol_FrameBg]; //ImVec4(0.70f, 0.0f, 0.70f, 0.67f);
     colors[ImGuiCol_TitleBg] = ImVec4(0.04f, 0.04f, 0.04f, 1.00f);
     colors[ImGuiCol_TitleBgActive] = ImVec4(0.04f, 0.24f, 0.55f, 1.00f);
@@ -200,8 +200,8 @@ void ImGui::StyleColorsDark(ImGuiStyle* dst)
     colors[ImGuiCol_SliderGrab] = ImVec4(0.04f, 0.24f, 0.55f, 1.00f);
     colors[ImGuiCol_SliderGrabActive] = ImVec4(0.04f, 0.24f, 0.55f, 1.00f);
     colors[ImGuiCol_Button] = ImVec4(0.08f, 0.08f, 0.08f, 0.2f); // Button
-    colors[ImGuiCol_ButtonHovered] = ImVec4(1.0f, 0.0f, 1.0f, 0.60f);
-    colors[ImGuiCol_ButtonActive] = ImVec4(0.80f, 0.0f, 0.80f, 1.00f);
+    colors[ImGuiCol_ButtonHovered] = ImVec4(0.08f, 0.08f, 0.08f, 0.2f);
+    colors[ImGuiCol_ButtonActive] = ImVec4(0.08f, 0.08f, 0.08f, 0.2f);
     colors[ImGuiCol_Header] = ImVec4(1.0f, 0.0f, 1.0f, 0.70f);
     colors[ImGuiCol_HeaderHovered] = ImVec4(40.0f, 0.0f, 40.0f, 0.80f);
     colors[ImGuiCol_HeaderActive] = ImVec4(1.0f, 0.0f, 1.0f, 1.00f);
