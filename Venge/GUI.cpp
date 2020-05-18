@@ -170,180 +170,187 @@ void GUI::renderAimbotWindow() noexcept
 			ImGui::SetNextWindowSize({ 600.0f, 0.0f });
 			ImGui::Begin("Aimbot", &window.aimhelper, windowFlags);
 		}
-		static int currentCategory{ 0 };
-		ImGui::PushItemWidth(110.0f);
-		//ImGui::PushFont(fonts.tahoma);
-		ImGui::PushID(0);
-		ImGui::Combo("", &currentCategory, "All\0Pistols\0Heavy\0SMG\0Rifles\0");
-		ImGui::PopID();
-		ImGui::SameLine();
-		static int currentWeapon{ 0 };
-		ImGui::PushID(1);
 
-		static int selectedRifle;
+		ImGui::Spacing();
 
-		switch (currentCategory) {
-		case 0:
-			currentWeapon = 0;
-			ImGui::NewLine();
-			break;
-		case 1: {
-			static int currentPistol{ 0 };
-			static constexpr const char* pistols[]{ "All", "Glock-18", "P2000", "USP-S", "Dual Berettas", "P250", "Tec-9", "Five-Seven", "CZ-75", "Desert Eagle", "Revolver" };
-			ImGui::Combo("", &currentPistol, [](void* data, int idx, const char** out_text) {
-				if (config.aimhelper[idx ? idx : 35].enabled) {
-					static std::string name;
-					name = pistols[idx];
-					*out_text = name.append(" (ON)").c_str();
-				}
-				else {
-					*out_text = pistols[idx];
-				}
-				return true;
+		ImGui::BeginChild("Test", ImVec2(609, 401), false);
+		{
+			static int currentCategory{ 0 };
+			ImGui::PushItemWidth(110.0f);
+			//ImGui::PushFont(fonts.tahoma);
+			ImGui::PushID(0);
+			ImGui::Combo("", &currentCategory, "All\0Pistols\0Heavy\0SMG\0Rifles\0");
+			ImGui::PopID();
+			ImGui::SameLine();
+			static int currentWeapon{ 0 };
+			ImGui::PushID(1);
+
+			static int selectedRifle;
+
+			switch (currentCategory) {
+			case 0:
+				currentWeapon = 0;
+				ImGui::NewLine();
+				break;
+			case 1: {
+				static int currentPistol{ 0 };
+				static constexpr const char* pistols[]{ "All", "Glock-18", "P2000", "USP-S", "Dual Berettas", "P250", "Tec-9", "Five-Seven", "CZ-75", "Desert Eagle", "Revolver" };
+				ImGui::Combo("", &currentPistol, [](void* data, int idx, const char** out_text) {
+					if (config.aimhelper[idx ? idx : 35].enabled) {
+						static std::string name;
+						name = pistols[idx];
+						*out_text = name.append(" (ON)").c_str();
+					}
+					else {
+						*out_text = pistols[idx];
+					}
+					return true;
 				}, nullptr, IM_ARRAYSIZE(pistols));
 
-			currentWeapon = currentPistol ? currentPistol : 35;
-			break;
-		}
-		case 2: {
-			static int currentHeavy{ 0 };
-			static constexpr const char* heavies[]{ "All", "Nova", "XM1014", "Sawed-off", "MAG-7", "M249", "Negev" };
+				currentWeapon = currentPistol ? currentPistol : 35;
+				break;
+			}
+			case 2: {
+				static int currentHeavy{ 0 };
+				static constexpr const char* heavies[]{ "All", "Nova", "XM1014", "Sawed-off", "MAG-7", "M249", "Negev" };
 
-			ImGui::Combo("", &currentHeavy, [](void* data, int idx, const char** out_text) {
-				if (config.aimhelper[idx ? idx + 10 : 36].enabled) {
-					static std::string name;
-					name = heavies[idx];
-					*out_text = name.append(" (ON)").c_str();
-				}
-				else {
-					*out_text = heavies[idx];
-				}
-				return true;
+				ImGui::Combo("", &currentHeavy, [](void* data, int idx, const char** out_text) {
+					if (config.aimhelper[idx ? idx + 10 : 36].enabled) {
+						static std::string name;
+						name = heavies[idx];
+						*out_text = name.append(" (ON)").c_str();
+					}
+					else {
+						*out_text = heavies[idx];
+					}
+					return true;
 				}, nullptr, IM_ARRAYSIZE(heavies));
 
-			currentWeapon = currentHeavy ? currentHeavy + 10 : 36;
-			break;
-		}
-		case 3: {
-			static int currentSmg{ 0 };
-			static constexpr const char* smgs[]{ "All", "Mac-10", "MP9", "MP7", "MP5-SD", "UMP-45", "P90", "PP-Bizon" };
+				currentWeapon = currentHeavy ? currentHeavy + 10 : 36;
+				break;
+			}
+			case 3: {
+				static int currentSmg{ 0 };
+				static constexpr const char* smgs[]{ "All", "Mac-10", "MP9", "MP7", "MP5-SD", "UMP-45", "P90", "PP-Bizon" };
 
-			ImGui::Combo("", &currentSmg, [](void* data, int idx, const char** out_text) {
-				if (config.aimhelper[idx ? idx + 16 : 37].enabled) {
-					static std::string name;
-					name = smgs[idx];
-					*out_text = name.append(" (ON)").c_str();
-				}
-				else {
-					*out_text = smgs[idx];
-				}
-				return true;
+				ImGui::Combo("", &currentSmg, [](void* data, int idx, const char** out_text) {
+					if (config.aimhelper[idx ? idx + 16 : 37].enabled) {
+						static std::string name;
+						name = smgs[idx];
+						*out_text = name.append(" (ON)").c_str();
+					}
+					else {
+						*out_text = smgs[idx];
+					}
+					return true;
 				}, nullptr, IM_ARRAYSIZE(smgs));
 
-			currentWeapon = currentSmg ? currentSmg + 16 : 37;
-			break;
-		}
-		case 4: {
-			static int currentRifle{ 0 };
-			static constexpr const char* rifles[]{ "All", "Galil AR", "Famas", "AK-47", "M4A4", "M4A1-S", "SSG-08", "SG-553", "AUG", "AWP", "G3SG1", "SCAR-20" };
+				currentWeapon = currentSmg ? currentSmg + 16 : 37;
+				break;
+			}
+			case 4: {
+				static int currentRifle{ 0 };
+				static constexpr const char* rifles[]{ "All", "Galil AR", "Famas", "AK-47", "M4A4", "M4A1-S", "SSG-08", "SG-553", "AUG", "AWP", "G3SG1", "SCAR-20" };
 
-			ImGui::Combo("", &currentRifle, [](void* data, int idx, const char** out_text) {
-				if (config.aimhelper[idx ? idx + 23 : 38].enabled) {
-					static std::string name;
-					name = rifles[idx];
-					*out_text = name.append(" (ON)").c_str();
-				}
-				else {
-					*out_text = rifles[idx];
-				}
-				return true;
+				ImGui::Combo("", &currentRifle, [](void* data, int idx, const char** out_text) {
+					if (config.aimhelper[idx ? idx + 23 : 38].enabled) {
+						static std::string name;
+						name = rifles[idx];
+						*out_text = name.append(" (ON)").c_str();
+					}
+					else {
+						*out_text = rifles[idx];
+					}
+					return true;
 				}, nullptr, IM_ARRAYSIZE(rifles));
 
-			currentWeapon = currentRifle ? currentRifle + 23 : 38;
-			selectedRifle = currentRifle;
-			break;
-		}
-		}
-		ImGui::PopID();
-		ImGui::SameLine();
-		ImGui::Checkbox("Enabled", &config.aimhelper[currentWeapon].enabled); 
-		ImGui::SameLine();
-		ImGui::Checkbox("Blatant Mode", &config.aimhelper[currentWeapon].blatantMode);
-		//ImGui::Separator();
-		ImGui::NewLine();
-		ImGui::Columns(2, nullptr, false);
-		ImGui::SetColumnOffset(1, 235.0f);
-		ImGui::Checkbox("On Key", &config.aimhelper[currentWeapon].onKey);
-		ImGui::SameLine();
-		hotkey(config.aimhelper[currentWeapon].key);
-		ImGui::SameLine();
-		ImGui::PushID(2);
-		ImGui::PushItemWidth(70.0f);
-		ImGui::Combo("", &config.aimhelper[currentWeapon].keyMode, "Hold\0Toggle\0");
-		ImGui::PopItemWidth();
-		ImGui::PopID();
-		if (config.aimhelper[currentWeapon].blatantMode)
-		{
-			ImGui::Checkbox("Aimlock", &config.aimhelper[currentWeapon].aimlock);
-			ImGui::Checkbox("Silent", &config.aimhelper[currentWeapon].silent);
-		}
-		ImGui::Checkbox("Friendly Fire", &config.aimhelper[currentWeapon].friendlyFire);
-		ImGui::Checkbox("Visible Only", &config.aimhelper[currentWeapon].visibleOnly);
-		if (currentCategory == 0 || currentCategory == 4)
-		{
-			if (currentCategory == 0)
-				ImGui::Checkbox("Scoped Only", &config.aimhelper[currentWeapon].scopedOnly);
-			else if (selectedRifle == 0 || selectedRifle == 6 || selectedRifle == 7 || selectedRifle == 8 || selectedRifle == 9 || selectedRifle == 10 || selectedRifle == 11)
-				ImGui::Checkbox("Scoped Only", &config.aimhelper[currentWeapon].scopedOnly);
-		}
-		if (config.aimhelper[currentWeapon].blatantMode)
-		{
-			ImGui::Checkbox("Ignore Flash", &config.aimhelper[currentWeapon].ignoreFlash);
-			ImGui::Checkbox("Ignore Smoke", &config.aimhelper[currentWeapon].ignoreSmoke);
-			ImGui::Checkbox("Auto Shot", &config.aimhelper[currentWeapon].autoShot);
-			ImGui::Checkbox("Auto Scope", &config.aimhelper[currentWeapon].autoScope);
-		}
-		
-		ImGui::Checkbox("Recoil-Based FOV", &config.aimhelper[currentWeapon].recoilbasedFov);
-		ImGui::Combo("Hitbox", &config.aimhelper[currentWeapon].bone, "Nearest\0Critical Shot\0Head\0Neck\0Upper Chest\0Lower Chest\0Stomach\0Pelvis\0");
-		ImGui::PushItemWidth(220.0f);
-		ImGui::Checkbox("Backtrack", &config.timereverse.enabled);
-		//ImGui::Checkbox("Ignore smoke", &config.timereverse.ignoreSmoke);
-		//ImGui::Checkbox("Recoil based fov", &config.timereverse.recoilBasedFov);
-		ImGui::PushItemWidth(220.0f);
-		ImGui::SliderInt("", &config.timereverse.timeLimit, 1, 200, "Backtrack Time: %d ms");
-		ImGui::PopItemWidth();
-		ImGui::NextColumn();
-		ImGui::SliderFloat("Smoothing", &config.aimhelper[currentWeapon].smooth, 1.0f, 50.0f, "%.2f");
-		if (config.aimhelper[currentWeapon].blatantMode)
-		{
-			ImGui::SliderFloat("FOV", &config.aimhelper[currentWeapon].fov, 0.0f, 200.0f, "%.2f");
-		}
-		else
-		{
-			ImGui::SliderFloat("FOV", &config.aimhelper[currentWeapon].fov, 0.0f, 10.0f, "%.2f");
-		}
-		ImGui::Text("");
-		ImGui::SliderFloat("RCS X", &config.aimhelper[currentWeapon].recoilControlX, 0.0f, 1.0f, "%.2f");
-		ImGui::SliderFloat("RCS Y", &config.aimhelper[currentWeapon].recoilControlY, 0.0f, 1.0f, "%.2f");
-		ImGui::Text("");
-		//ImGui::SliderFloat("Aim Accuracy", &config.aimhelper[currentWeapon].maxAimInaccuracy, 0.0f, 1.0f, "%.5f", 2.0f);
-		//ImGui::SliderFloat("Shot Accuracy", &config.aimhelper[currentWeapon].maxShotInaccuracy, 0.0f, 1.0f, "%.5f", 2.0f);
-		
-		/*if (config.aimhelper[currentWeapon].blatantMode)
-		{
+				currentWeapon = currentRifle ? currentRifle + 23 : 38;
+				selectedRifle = currentRifle;
+				break;
+			}
+			}
+			ImGui::PopID();
+			ImGui::SameLine();
+			ImGui::Checkbox("Enabled", &config.aimhelper[currentWeapon].enabled);
+			ImGui::SameLine();
+			ImGui::Checkbox("Blatant Mode", &config.aimhelper[currentWeapon].blatantMode);
+			//ImGui::Separator();
+			ImGui::NewLine();
+			ImGui::Columns(2, nullptr, false);
+			ImGui::SetColumnOffset(1, 235.0f);
+			ImGui::Checkbox("On Key", &config.aimhelper[currentWeapon].onKey);
+			ImGui::SameLine();
+			hotkey(config.aimhelper[currentWeapon].key);
+			ImGui::SameLine();
+			ImGui::PushID(2);
+			ImGui::PushItemWidth(70.0f);
+			ImGui::Combo("", &config.aimhelper[currentWeapon].keyMode, "Hold\0Toggle\0");
+			ImGui::PopItemWidth();
+			ImGui::PopID();
+			if (config.aimhelper[currentWeapon].blatantMode)
+			{
+				ImGui::Checkbox("Aimlock", &config.aimhelper[currentWeapon].aimlock);
+				ImGui::Checkbox("Silent", &config.aimhelper[currentWeapon].silent);
+			}
+			ImGui::Checkbox("Friendly Fire", &config.aimhelper[currentWeapon].friendlyFire);
+			ImGui::Checkbox("Visible Only", &config.aimhelper[currentWeapon].visibleOnly);
+			if (currentCategory == 0 || currentCategory == 4)
+			{
+				if (currentCategory == 0)
+					ImGui::Checkbox("Scoped Only", &config.aimhelper[currentWeapon].scopedOnly);
+				else if (selectedRifle == 0 || selectedRifle == 6 || selectedRifle == 7 || selectedRifle == 8 || selectedRifle == 9 || selectedRifle == 10 || selectedRifle == 11)
+					ImGui::Checkbox("Scoped Only", &config.aimhelper[currentWeapon].scopedOnly);
+			}
+			if (config.aimhelper[currentWeapon].blatantMode)
+			{
+				ImGui::Checkbox("Ignore Flash", &config.aimhelper[currentWeapon].ignoreFlash);
+				ImGui::Checkbox("Ignore Smoke", &config.aimhelper[currentWeapon].ignoreSmoke);
+				ImGui::Checkbox("Auto Shot", &config.aimhelper[currentWeapon].autoShot);
+				ImGui::Checkbox("Auto Scope", &config.aimhelper[currentWeapon].autoScope);
+			}
+
+			ImGui::Checkbox("Recoil-Based FOV", &config.aimhelper[currentWeapon].recoilbasedFov);
+			ImGui::Combo("Hitbox", &config.aimhelper[currentWeapon].bone, "Nearest\0Critical Shot\0Head\0Neck\0Upper Chest\0Lower Chest\0Stomach\0Pelvis\0");
+			ImGui::PushItemWidth(220.0f);
+			ImGui::Checkbox("Backtrack", &config.timereverse.enabled);
+			//ImGui::Checkbox("Ignore smoke", &config.timereverse.ignoreSmoke);
+			//ImGui::Checkbox("Recoil based fov", &config.timereverse.recoilBasedFov);
+			ImGui::PushItemWidth(220.0f);
+			ImGui::SliderInt("", &config.timereverse.timeLimit, 1, 200, "Backtrack Time: %d ms");
+			ImGui::PopItemWidth();
+			ImGui::NextColumn();
+			ImGui::SliderFloat("Smoothing", &config.aimhelper[currentWeapon].smooth, 1.0f, 50.0f, "%.2f");
+			if (config.aimhelper[currentWeapon].blatantMode)
+			{
+				ImGui::SliderFloat("FOV", &config.aimhelper[currentWeapon].fov, 0.0f, 200.0f, "%.2f");
+			}
+			else
+			{
+				ImGui::SliderFloat("FOV", &config.aimhelper[currentWeapon].fov, 0.0f, 10.0f, "%.2f");
+			}
 			ImGui::Text("");
-			ImGui::InputInt("Min damage", &config.aimhelper[currentWeapon].minDamage);
-			config.aimhelper[currentWeapon].minDamage = std::clamp(config.aimhelper[currentWeapon].minDamage, 0, 250);
-			//ImGui::Checkbox("Killshot", &config.aimhelper[currentWeapon].killshot);
-		}*/
-		//ImGui::Checkbox("Between shots", &config.aimhelper[currentWeapon].betweenShots);
+			ImGui::SliderFloat("RCS X", &config.aimhelper[currentWeapon].recoilControlX, 0.0f, 1.0f, "%.2f");
+			ImGui::SliderFloat("RCS Y", &config.aimhelper[currentWeapon].recoilControlY, 0.0f, 1.0f, "%.2f");
+			ImGui::Text("");
+			//ImGui::SliderFloat("Aim Accuracy", &config.aimhelper[currentWeapon].maxAimInaccuracy, 0.0f, 1.0f, "%.5f", 2.0f);
+			//ImGui::SliderFloat("Shot Accuracy", &config.aimhelper[currentWeapon].maxShotInaccuracy, 0.0f, 1.0f, "%.5f", 2.0f);
 
-		//ImGui::PopFont();
+			/*if (config.aimhelper[currentWeapon].blatantMode)
+			{
+				ImGui::Text("");
+				ImGui::InputInt("Min damage", &config.aimhelper[currentWeapon].minDamage);
+				config.aimhelper[currentWeapon].minDamage = std::clamp(config.aimhelper[currentWeapon].minDamage, 0, 250);
+				//ImGui::Checkbox("Killshot", &config.aimhelper[currentWeapon].killshot);
+			}*/
+			//ImGui::Checkbox("Between shots", &config.aimhelper[currentWeapon].betweenShots);
 
-		ImGui::Columns(1);
-		if (!config.style.menuStyle)
-			ImGui::End();
+			//ImGui::PopFont();
+
+			ImGui::Columns(1);
+			if (!config.style.menuStyle)
+				ImGui::End();
+		}
+		ImGui::EndChild();
 	}
 }
 

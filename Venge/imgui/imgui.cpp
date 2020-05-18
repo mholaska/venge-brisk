@@ -4543,6 +4543,29 @@ static bool ImGui::BeginChildEx(const char* name, ImGuiID id, const ImVec2& size
     child_window->ChildId = id;
     child_window->AutoFitChildAxises = (ImS8)auto_fit_axises;
 
+    //Top Left
+    child_window->DrawList->AddLine(ImVec2(child_window->Pos.x, child_window->Pos.y + 4), ImVec2(child_window->Pos.x + 20, child_window->Pos.y + 4), ImColor(72, 74, 81), 1.f);
+    //Text
+    child_window->DrawList->AddText(ImVec2(child_window->Pos.x + 25, child_window->Pos.y - 3), ImColor(92, 94, 101), name);
+    //Top Right
+    auto text_size = ImGui::CalcTextSize(name, NULL, true);
+    child_window->DrawList->AddLine(ImVec2(child_window->Pos.x + text_size.x + 30, child_window->Pos.y + 4), ImVec2(child_window->Pos.x + size.x, child_window->Pos.y + 4), ImColor(72, 74, 81), 1.f);
+    //Right
+    child_window->DrawList->AddLine(ImVec2(child_window->Pos.x + size.x - 1, child_window->Pos.y + 4), ImVec2(child_window->Pos.x + size.x - 1, child_window->Pos.y + child_window->Size.y - 1), ImColor(72, 74, 81), 1.f);
+    //Left
+    child_window->DrawList->AddLine(ImVec2(child_window->Pos.x, child_window->Pos.y + 4), ImVec2(child_window->Pos.x, child_window->Pos.y + child_window->Size.y - 1), ImColor(72, 74, 81), 1.f);
+    //Bottom
+    child_window->DrawList->AddLine(ImVec2(child_window->Pos.x, child_window->Pos.y + child_window->Size.y - 1), ImVec2(child_window->Pos.x + size.x, child_window->Pos.y + child_window->Size.y - 1), ImColor(72, 74, 81), 1.f);
+
+    ImGui::Spacing();
+    ImGui::Spacing();
+    ImGui::Spacing();
+    ImGui::Spacing();
+    ImGui::Spacing();
+    ImGui::Spacing();
+    ImGui::SameLine();
+
+
     // Set the cursor to handle case where the user called SetNextWindowPos()+BeginChild() manually.
     // While this is not really documented/defined, it seems that the expected thing to do.
     if (child_window->BeginCount == 1)
